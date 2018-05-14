@@ -1,0 +1,1 @@
+/usr/bin/mpic++  -g   CMakeFiles/mpi_coursework.dir/main.cpp.o  -o mpi_coursework 

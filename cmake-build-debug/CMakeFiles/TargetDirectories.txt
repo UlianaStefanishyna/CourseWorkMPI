@@ -1,0 +1,3 @@
+/home/uliana/development/cpp-projects/mpi_coursework/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/uliana/development/cpp-projects/mpi_coursework/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/uliana/development/cpp-projects/mpi_coursework/cmake-build-debug/CMakeFiles/mpi_coursework.dir
