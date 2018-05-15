@@ -8,10 +8,10 @@
 
 using namespace std;
 
-const unsigned int N = 1000;
+const unsigned int N = 10;
 const unsigned int P = 9;
 const unsigned int H = N / P;
-const unsigned int count = 10;
+const unsigned int count = 11;
 
 struct Vector {
     int A[N];

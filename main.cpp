@@ -1,3 +1,4 @@
+#include <cstring>
 #include "Utils.h"
 
 //const int N = 100;
@@ -12,7 +13,7 @@
  */
 
 int main(int argc, char **argv) {
-
+memcpy()
 //    const rlim_t kStackSize = 256 * 1024 * 1024;   // min stack size = 256 MB
 //    struct rlimit rl;
 //    int result;
@@ -22,7 +23,7 @@ int main(int argc, char **argv) {
 //            rl.rlim_cur = kStackSize;
 //            result = setrlimit(RLIMIT_STACK, &rl);
 //            if (result != 0) {
-//                fprintf(stderr, "setrlimit returned result = %d\n", result);
+//                fprintf(s btderr, "setrlimit returned result = %d\n", result);
 //            }
 //        }
 //    }
@@ -38,28 +39,44 @@ int main(int argc, char **argv) {
 
     double half = (double) size / 2.0;
     int a = 5;
+    Matrix MB, MO, MX;
+    Matrix MM;
+    Vector E;
+    int d;
+    int MS[N][N];
+    int *data = (int *) malloc(N * N * sizeof(int));
+    int **array = (int **) malloc(N * sizeof(int *));
 
     if (((rank + 1) < (int) half) || (((rank + 1) == (int) half) && ((int) half != half))) {
-        cout << "process #" << rank << endl;
 
         if (rank == 0) {
-            Matrix MS, MM;
-            Vector E;
-            int d;
-            MS.fillBy(1);
+            cout << "process #" << rank << endl;
+//            MS.fillBy(1);
             MM.fillBy(1);
-            E.fillBy(1);
-            d = 1;
+//            E.fillBy(1);
+//            d = 1;
+//            MS.print();
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    MS[i][j] = 1;
+                }
+                cout << *MS[i] << " ";
+            }
+//            for (int i = 0; i < N; i++) {
 
-            MPI_Send((x + 1), 9, MPI_DOUBLE, rank + 1, 0, MPI_COMM_WORLD);
+
+            for (int i = 0; i < N; i++)
+                array[i] = &(data[N * i]);
+
+            MPI_Send(&(array[0][0]), N * N, MPI_INT, size - 1, 0, MPI_COMM_WORLD);
+//            }
 
             for (int i = 0; i < 9; i++) {
                 x[i] = 0.1 * i;
             }
-            printf("Hello world from rank %d, out of %d processors\n", rank, size);
+//            printf("Hello world from rank %d, out of %d processors\n", rank, size);
 
         } else {
-//            cout << "I am #" << rank << endl;
 //            MPI_Recv(x, 9, MPI_DOUBLE, rank - 1, 0, MPI_COMM_WORLD, &status);
 //            printf("Hello world from rank %d, out of %d processors\n", rank, size);
 //            MPI_Send((x + rank + 1), 9 - rank, MPI_DOUBLE, rank + 1, 0, MPI_COMM_WORLD);
@@ -73,20 +90,10 @@ int main(int argc, char **argv) {
 
 
     } else if ((rank - 2) > (int) half) {
-        cout << "process #" << rank << endl;
 
-        if (rank == size) {
-
-            Matrix MB, MO, MX;
-            MB.fillBy(1);
-            MO.fillBy(1);
-            MX.fillBy(1);
-//            cout << "I am #" << rank << endl;
-//            MPI_Recv(x, 10, MPI_DOUBLE, 0, 666, MPI_COMM_WORLD, &status);
-//            for (int i = 0; i < 10; i++)
-//                cout << x[i] << " ";
-//            cout << endl;
-//            cout << endl;
+        if (rank == size - 1) {
+            cout << "process #" << rank << endl;
+            MPI_Recv(&(array[0][0]), N * N, MPI_INT, 0, 666, MPI_COMM_WORLD, &status);
         } else {
 
         }
