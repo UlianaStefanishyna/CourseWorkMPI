@@ -3,7 +3,7 @@ project(mpi_coursework)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(mpi_coursework main.cpp Utils.h)
+add_executable(mpi_coursework main.cpp)
 include_directories(/usr/include/mpich/mpi.h)
 
 set(CMAKE_C_COMPILER "/usr/bin/mpicc")
